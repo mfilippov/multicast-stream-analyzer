@@ -1,4 +1,4 @@
 multicast-stream-analyzer
 =========================
 
-Analyzer UDP Multicast streams.
+Analyzer for UDP multicast streams.
