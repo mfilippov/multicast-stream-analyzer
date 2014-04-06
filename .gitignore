@@ -9,3 +9,8 @@
 .idea/*
 .gradle/*
 *.iml
+
+# Build files
+build/*
+classes/*
+
