@@ -6,10 +6,10 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class PacketProcessor implements IPacketProcessor {
 
-    private AtomicLong streamBytes;
-    private AtomicLong scrambledErrorCount;
-    private AtomicLong continuousCounterErrorCount;
-    private ConcurrentHashMap<Integer, Integer> channelState;
+    private final AtomicLong streamBytes;
+    private final AtomicLong scrambledErrorCount;
+    private final AtomicLong continuousCounterErrorCount;
+    private final ConcurrentHashMap<Integer, Integer> channelState;
 
     public PacketProcessor() {
         streamBytes = new AtomicLong(0);

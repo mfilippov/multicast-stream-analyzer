@@ -9,11 +9,11 @@ import org.junit.Test;
 import java.nio.ByteBuffer;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class PacketDecoderTest {
     IPacketDecoder packetDecoder;
-    private ByteBuffer packet = ByteBuffer.wrap(new byte[] {
+    private final ByteBuffer packet = ByteBuffer.wrap(new byte[] {
         0x47, 0x40, 0x01, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -165,8 +165,8 @@ public class PacketDecoderTest {
     public void shouldBeCorrectPayloadFlag() {
         List<PacketChunk> chunks = packetDecoder.decode(packet);
 
-        assertEquals("Incorrect payload flag", false, chunks.get(0).isPayload());
-        assertEquals("Incorrect payload flag", true, chunks.get(1).isPayload());
+        assertFalse("Incorrect payload flag", chunks.get(0).isPayload());
+        assertTrue("Incorrect payload flag", chunks.get(1).isPayload());
     }
 
     @Test
@@ -194,25 +194,25 @@ public class PacketDecoderTest {
     public void shouldBeCorrectScrambledFlag() {
         List<PacketChunk> chunks = packetDecoder.decode(packet);
 
-        assertEquals("Incorrect scrambled flag", false, chunks.get(0).isScrambled());
-        assertEquals("Incorrect scrambled flag", false, chunks.get(1).isScrambled());
-        assertEquals("Incorrect scrambled flag", true, chunks.get(2).isScrambled());
-        assertEquals("Incorrect scrambled flag", false, chunks.get(3).isScrambled());
-        assertEquals("Incorrect scrambled flag", false, chunks.get(4).isScrambled());
-        assertEquals("Incorrect scrambled flag", false, chunks.get(5).isScrambled());
-        assertEquals("Incorrect scrambled flag", false, chunks.get(6).isScrambled());
+        assertFalse("Incorrect scrambled flag", chunks.get(0).isScrambled());
+        assertFalse("Incorrect scrambled flag", chunks.get(1).isScrambled());
+        assertTrue("Incorrect scrambled flag", chunks.get(2).isScrambled());
+        assertFalse("Incorrect scrambled flag", chunks.get(3).isScrambled());
+        assertFalse("Incorrect scrambled flag", chunks.get(4).isScrambled());
+        assertFalse("Incorrect scrambled flag", chunks.get(5).isScrambled());
+        assertFalse("Incorrect scrambled flag", chunks.get(6).isScrambled());
     }
 
     @Test
     public void shouldBeCorrectSyncFlag() {
         List<PacketChunk> chunks = packetDecoder.decode(packet);
 
-        assertEquals("Incorrect sync flag", true, chunks.get(0).isSync());
-        assertEquals("Incorrect sync flag", true, chunks.get(1).isSync());
-        assertEquals("Incorrect sync flag", true, chunks.get(2).isSync());
-        assertEquals("Incorrect sync flag", true, chunks.get(3).isSync());
-        assertEquals("Incorrect sync flag", true, chunks.get(4).isSync());
-        assertEquals("Incorrect sync flag", true, chunks.get(5).isSync());
-        assertEquals("Incorrect sync flag", false, chunks.get(6).isSync());
+        assertTrue("Incorrect sync flag", chunks.get(0).isSync());
+        assertTrue("Incorrect sync flag", chunks.get(1).isSync());
+        assertTrue("Incorrect sync flag", chunks.get(2).isSync());
+        assertTrue("Incorrect sync flag", chunks.get(3).isSync());
+        assertTrue("Incorrect sync flag", chunks.get(4).isSync());
+        assertTrue("Incorrect sync flag", chunks.get(5).isSync());
+        assertFalse("Incorrect sync flag", chunks.get(6).isSync());
     }
 }

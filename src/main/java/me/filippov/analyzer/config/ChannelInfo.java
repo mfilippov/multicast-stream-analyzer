@@ -4,10 +4,10 @@ import me.filippov.analyzer.processing.IPacketProcessor;
 import me.filippov.analyzer.processing.PacketProcessor;
 
 public class ChannelInfo {
-    private String address;
-    private int port;
-    private String name;
-    private IPacketProcessor processor;
+    private final String address;
+    private final int port;
+    private final String name;
+    private final IPacketProcessor processor;
 
     public ChannelInfo(String address, int port, String name) {
         this.address = address;

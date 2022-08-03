@@ -1,11 +1,10 @@
 package me.filippov.analyzer.config;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigurationManager {
-    public static List<ChannelInfo> getChannelList(List<String> lines) throws IOException {
+    public static List<ChannelInfo> getChannelList(List<String> lines) {
         List<ChannelInfo> result = new ArrayList<>();
         String address = null;
         String name = null;

@@ -11,11 +11,11 @@ import java.nio.channels.MembershipKey;
 
 public class MulticastListener extends Thread {
 
-    private NetworkInterface networkInterface;
-    private String groupAddress;
-    private int port;
-    private IPacketProcessor packetProcessor;
-    private IPacketDecoder packetDecoder;
+    private final NetworkInterface networkInterface;
+    private final String groupAddress;
+    private final int port;
+    private final IPacketProcessor packetProcessor;
+    private final IPacketDecoder packetDecoder;
 
     public MulticastListener(NetworkInterface networkInterface, String groupAddress, int port, IPacketProcessor packetProcessor, IPacketDecoder packetDecoder) {
         this.networkInterface = networkInterface;
@@ -27,12 +27,11 @@ public class MulticastListener extends Thread {
 
     @Override
     public void run() {
-        DatagramChannel dc;
-        try {
-            dc = DatagramChannel.open(StandardProtocolFamily.INET)
+        try (DatagramChannel dc = DatagramChannel.open(StandardProtocolFamily.INET)
                     .setOption(StandardSocketOptions.SO_REUSEADDR, true)
-                    .bind(new InetSocketAddress(port))
-                    .setOption(StandardSocketOptions.IP_MULTICAST_IF, networkInterface);
+                .bind(new InetSocketAddress(port))
+                .setOption(StandardSocketOptions.IP_MULTICAST_IF, networkInterface)){
+
             InetAddress group = null;
             try {
                 group = InetAddress.getByName(groupAddress);

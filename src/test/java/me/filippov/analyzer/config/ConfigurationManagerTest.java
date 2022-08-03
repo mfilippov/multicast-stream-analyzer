@@ -18,26 +18,26 @@ public class ConfigurationManagerTest {
                             "udp://@239.255.1.3:1234");
 
     @Test
-    public void shouldCorrectLoadChannelCount() throws Exception {
+    public void shouldCorrectLoadChannelCount() {
         List<ChannelInfo> result = ConfigurationManager.getChannelList(list1);
         assertEquals(3, result.size());
     }
     @Test
-    public void shouldCorrectLoadChannelName() throws Exception {
+    public void shouldCorrectLoadChannelName() {
         List<ChannelInfo> result = ConfigurationManager.getChannelList(list1);
         assertEquals("Channel1", result.get(0).getName());
         assertEquals("Channel2", result.get(1).getName());
         assertEquals("Channel3", result.get(2).getName());
     }
     @Test
-    public void shouldCorrectLoadChannelAddress() throws Exception {
+    public void shouldCorrectLoadChannelAddress() {
         List<ChannelInfo> result = ConfigurationManager.getChannelList(list1);
         assertEquals("239.255.1.1", result.get(0).getAddress());
         assertEquals("239.255.1.2", result.get(1).getAddress());
         assertEquals("239.255.1.3", result.get(2).getAddress());
     }
     @Test
-    public void shouldCorrectLoadChannelPort() throws Exception {
+    public void shouldCorrectLoadChannelPort() {
         List<ChannelInfo> result = ConfigurationManager.getChannelList(list1);
         assertEquals(1234, result.get(0).getPort());
         assertEquals(1234, result.get(1).getPort());

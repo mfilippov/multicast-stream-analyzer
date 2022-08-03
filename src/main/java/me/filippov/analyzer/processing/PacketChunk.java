@@ -1,11 +1,11 @@
 package me.filippov.analyzer.processing;
 
 public class PacketChunk {
-    private boolean isCorrect;
-    private boolean payload;
-    private int pid;
-    private int cc;
-    private boolean scrambled;
+    private final boolean isCorrect;
+    private final boolean payload;
+    private final int pid;
+    private final int cc;
+    private final boolean scrambled;
 
     public PacketChunk(boolean isSync, boolean payload, int pid, int cc, boolean scrambled) {
         this.isCorrect = isSync;
